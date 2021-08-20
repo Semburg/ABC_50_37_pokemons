@@ -1,5 +1,5 @@
 const poke_container = document.getElementById('poke-container')
-const pokemon_count = 2
+const pokemon_count = 6
 const colors = {
     fire: '#fddfdf',
     grass: '#defde0',
@@ -30,7 +30,34 @@ const getPokemon = async (id) => {
     const url = `https://pokeapi.co/api/v2/pokemon/${id}`
     const res = await fetch(url)
     const data = await res.json()
-    console.log(data)
+
+    createPokemonCard()
+
+    // console.log(data)
+}
+
+const createPokemonCard = (pokemon) => {
+    const pokemonEl = document.createElement('div')
+    pokemonEl.classList.add('pokemon')
+
+    const name = `https://pokeapi.co/api/v2/pokemon/${pokemon}`
+
+    //  Broken page pokers.bastion?
+ // <img src="https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}" alt="">
+
+    const pokemonInnerHTML = `
+    <div class="img-container">
+       
+        <img src="https://cdn2.bulbagarden.net/upload/2/21/001Bulbasaur.png" alt="">
+    </div>
+    <div class="info">
+        <span class="number">#001</span>
+        <h3 class="name"></h3>
+        <small class="type">Type: <span>grass</span> </small>
+    </div>
+`
+    pokemonEl.innerHTML = pokemonInnerHTML
+    poke_container.appendChild(pokemonEl)
 }
 
 fetchPokemons()
